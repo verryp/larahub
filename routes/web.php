@@ -12,13 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('simple-table');
+})->name('dt-1');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/data-tables', function () {
+    return view('data-tables');
+})->name('dt-2');
