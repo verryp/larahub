@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('/data-tables', function () {
     return view('data-tables');
 })->name('dt-2');
+
+Route::get('/pertanyaan', 'QuestionController@index')->name('question.index');
+Route::get('/pertanyaan/create', 'QuestionController@create')->name('question.create');
+Route::post('/pertanyaan', 'QuestionController@store')->name('question.store');
+
+Route::get('/jawaban/{pertanyaan_id}', 'AnswerController@index');
