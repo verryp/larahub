@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
 {
     public function index($pertanyaan_id) {
-        $answers = DB::table('answers as a')
-        // ->select('q', 'a')
-        ->join('questions as q', 'q.id', 'a.question_id')
-        ->where('q.id', $pertanyaan_id)
-        ->get();
+        $question = Question::whereId($pertanyaan_id)
+        ->with('answers')
+        ->first();
 
-        return $answers;
+        return view('answers.create', compact('question'));
     }
 
     public function store(Request $request, $pertanyaan_id) {
@@ -34,6 +33,7 @@ class AnswerController extends Controller
             ]);
         }
 
-        return redirect()->route('question.index');
+        return redirect()->route('answer.index', [$pertanyaan_id])
+            ->with('status', 'Jawaban berhasil ditambah');;
     }
 }

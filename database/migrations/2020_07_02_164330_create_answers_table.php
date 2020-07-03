@@ -18,13 +18,15 @@ class CreateAnswersTable extends Migration
             $table->string('content');
             $table->integer('count_like')->default(0);
             $table->integer('count_dislike')->default(0);
-            $table->boolean('best_answer');
+            $table->boolean('best_answer')->default(false);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('question_id');
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -42,6 +42,13 @@
                         <p>Data Table</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('question.index') }}" class="nav-link">
+                        <i class="fas fa-table nav-icon"></i>
+                        <p>Pertanyaan</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
